@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Analysis – Liver Cancer Detection System</title>
+    <meta name="description"
+        content="Upload CT or MRI scan images for AI-powered liver cancer analysis and prediction.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🏥</text></svg>">
+</head>
+
+<body class="bg-slate-50">
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- Sidebar (same as dashboard) -->
+    <aside id="sidebar" class="sidebar">
+        <div style="padding:1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div
+                    style="width:42px;height:42px;background:linear-gradient(135deg,#2563EB,#0D9488);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 style="color:white;font-size:0.9rem;font-weight:700;line-height:1.2;">LiverScan AI</h2>
+                    <p style="color:#64748B;font-size:0.72rem;font-weight:500;">Cancer Detection</p>
+                </div>
+            </div>
+        </div>
+        <nav style="padding:1rem 0;">
+            <p
+                style="padding:8px 24px;font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#475569;">
+                Main Menu</p>
+            <a href="dashboard.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg>
+                Dashboard
+            </a>
+            <a href="analysis.html" class="sidebar-link active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                    <path d="M11 8v6M8 11h6" />
+                </svg>
+                AI Analysis
+            </a>
+            <a href="patients.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                Patient Reports
+            </a>
+            <a href="analytics.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 20V10" />
+                    <path d="M12 20V4" />
+                    <path d="M6 20v-6" />
+                </svg>
+                Analytics
+            </a>
+            <p
+                style="padding:16px 24px 8px;font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#475569;">
+                Settings</p>
+            <a href="system.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                System Info
+            </a>
+        </nav>
+        <div
+            style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <div
+                    style="width:36px;height:36px;background:linear-gradient(135deg,#3B82F6,#14B8A6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:white;">
+                    DM</div>
+                <div style="flex:1;min-width:0;">
+                    <p style="color:#E2E8F0;font-size:0.82rem;font-weight:600;">Dr. Mehra</p>
+                    <p style="color:#64748B;font-size:0.7rem;">Hepatologist</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div style="display:flex;align-items:center;gap:16px;">
+            <div id="hamburger" class="hamburger" role="button" aria-label="Toggle menu" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+            <h1 style="font-size:1.1rem;font-weight:700;color:#0F172A;">AI Scan Analysis</h1>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px;">
+            <span style="color:#64748B;font-size:0.82rem;" id="dateTime"></span>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <div
+                    style="width:34px;height:34px;background:linear-gradient(135deg,#3B82F6,#14B8A6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:white;">
+                    DM</div>
+                <span style="font-size:0.85rem;font-weight:600;color:#334155;" id="doctorName">Dr. Mehra</span>
+            </div>
+            <a href="#" id="logoutBtn"
+                style="display:flex;align-items:center;gap:6px;color:#EF4444;text-decoration:none;font-size:0.82rem;font-weight:500;padding:6px 14px;border-radius:8px;border:1px solid #FEE2E2;transition:all 0.2s;"
+                onmouseover="this.style.background='#FEF2F2'" onmouseout="this.style.background='transparent'">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                Logout
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Title -->
+        <div style="margin-bottom:2rem;" class="animate-slide-up">
+            <h2 style="font-size:1.6rem;font-weight:800;color:#0F172A;">AI Scan Analysis</h2>
+            <p style="color:#64748B;font-size:0.9rem;margin-top:4px;">Upload a CT or MRI scan image for AI-powered liver
+                cancer detection</p>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <!-- Upload Panel -->
+            <div class="animate-slide-up">
+                <div class="stat-card" style="padding:0;overflow:hidden;">
+                    <div
+                        style="padding:1.25rem 1.5rem;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;gap:10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="17 8 12 3 7 8" />
+                            <line x1="12" y1="3" x2="12" y2="15" />
+                        </svg>
+                        <h3 style="font-size:1rem;font-weight:700;color:#0F172A;">Upload Scan Image</h3>
+                    </div>
+
+                    <div style="padding:1.5rem;">
+                        <!-- Scan Type Selector -->
+                        <div style="display:flex;gap:12px;margin-bottom:1.25rem;">
+                            <label
+                                style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;border:2px solid #E2E8F0;border-radius:10px;cursor:pointer;transition:all 0.2s;font-size:0.85rem;font-weight:600;color:#475569;"
+                                id="ctLabel">
+                                <input type="radio" name="scanType" value="CT" checked style="accent-color:#2563EB;"
+                                    onchange="document.getElementById('ctLabel').style.borderColor='#2563EB';document.getElementById('ctLabel').style.background='#EFF6FF';document.getElementById('mriLabel').style.borderColor='#E2E8F0';document.getElementById('mriLabel').style.background='transparent';">
+                                CT Scan
+                            </label>
+                            <label
+                                style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;border:2px solid #E2E8F0;border-radius:10px;cursor:pointer;transition:all 0.2s;font-size:0.85rem;font-weight:600;color:#475569;"
+                                id="mriLabel">
+                                <input type="radio" name="scanType" value="MRI" style="accent-color:#2563EB;"
+                                    onchange="document.getElementById('mriLabel').style.borderColor='#2563EB';document.getElementById('mriLabel').style.background='#EFF6FF';document.getElementById('ctLabel').style.borderColor='#E2E8F0';document.getElementById('ctLabel').style.background='transparent';">
+                                MRI Scan
+                            </label>
+                        </div>
+
+                        <!-- Upload Zone -->
+                        <div class="upload-zone" id="uploadZone">
+                            <input type="file" id="fileInput" accept="image/*" style="display:none;">
+                            <div id="uploadPlaceholder">
+                                <div
+                                    style="width:64px;height:64px;margin:0 auto 1rem;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563EB"
+                                        stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <polyline points="21 15 16 10 5 21" />
+                                    </svg>
+                                </div>
+                                <p style="font-size:1rem;font-weight:600;color:#334155;">Drag & drop your scan image
+                                    here</p>
+                                <p style="font-size:0.85rem;color:#94A3B8;margin-top:4px;">or click to browse files</p>
+                                <p style="font-size:0.75rem;color:#CBD5E1;margin-top:12px;">Supports: JPEG, PNG, DICOM •
+                                    Max size: 50MB</p>
+                            </div>
+                            <div id="imagePreview" style="display:none;">
+                                <img id="previewImg"
+                                    style="max-width:100%;max-height:400px;border-radius:12px;object-fit:contain;"
+                                    alt="Uploaded scan preview">
+                                <div
+                                    style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;">
+                                    <span id="fileName" style="font-size:0.82rem;color:#64748B;font-weight:500;"></span>
+                                    <button id="removeImage"
+                                        style="font-size:0.78rem;color:#EF4444;background:none;border:none;cursor:pointer;font-weight:600;text-decoration:underline;">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analyze Button -->
+                        <button id="analyzeBtn" class="btn-primary" disabled
+                            style="width:100%;justify-content:center;padding:14px;font-size:1rem;margin-top:1.25rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                            </svg>
+                            Analyze with AI
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Processing Indicator -->
+                <div id="processingCard" class="stat-card"
+                    style="display:none;margin-top:1rem;text-align:center;padding:2.5rem;">
+                    <div class="scan-animation"
+                        style="width:120px;height:120px;margin:0 auto;background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#14B8A6" stroke-width="1.5"
+                            style="animation: pulse 2s ease-in-out infinite;">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg>
+                    </div>
+                    <h3 style="font-size:1.1rem;font-weight:700;color:#0F172A;margin-bottom:8px;">Analyzing Scan...</h3>
+                    <p style="font-size:0.85rem;color:#64748B;margin-bottom:1.5rem;">AI model is processing your CT/MRI
+                        image</p>
+                    <div class="pulse-loader">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <p style="font-size:0.75rem;color:#94A3B8;margin-top:1rem;" id="processingTime">Estimated time: 2-4
+                        seconds</p>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="animate-slide-up-delay-1">
+                <div id="resultsPlaceholder" class="stat-card" style="text-align:center;padding:4rem 2rem;">
+                    <div
+                        style="width:80px;height:80px;margin:0 auto 1.5rem;background:linear-gradient(135deg,#F1F5F9,#E2E8F0);border-radius:20px;display:flex;align-items:center;justify-content:center;">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                    </div>
+                    <h3 style="font-size:1.1rem;font-weight:700;color:#334155;margin-bottom:8px;">No Analysis Yet</h3>
+                    <p style="font-size:0.85rem;color:#94A3B8;max-width:280px;margin:0 auto;">Upload a CT or MRI scan
+                        image and click "Analyze with AI" to get predictions</p>
+                </div>
+
+                <!-- Result Card (hidden initially) -->
+                <div id="resultCard" style="display:none;">
+                    <!-- Header -->
+                    <div class="result-card" id="resultCardInner">
+                        <div id="resultHeader">
+                            <!-- Filled by JS -->
+                        </div>
+                        <div style="padding:1.5rem 2rem;">
+                            <!-- Confidence -->
+                            <div style="margin-bottom:1.5rem;">
+                                <div
+                                    style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                    <span style="font-size:0.85rem;font-weight:600;color:#334155;">Confidence
+                                        Score</span>
+                                    <span id="confidenceValue"
+                                        style="font-size:1.1rem;font-weight:800;color:#0F172A;">0%</span>
+                                </div>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" id="confidenceBar" style="width:0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Details Grid -->
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;">
+                                <div style="background:#F8FAFC;padding:12px;border-radius:10px;">
+                                    <p
+                                        style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">
+                                        Tumor Location</p>
+                                    <p style="font-size:0.85rem;font-weight:600;color:#334155;margin-top:4px;"
+                                        id="tumorLocation">—</p>
+                                </div>
+                                <div style="background:#F8FAFC;padding:12px;border-radius:10px;">
+                                    <p
+                                        style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">
+                                        Tumor Size</p>
+                                    <p style="font-size:0.85rem;font-weight:600;color:#334155;margin-top:4px;"
+                                        id="tumorSize">—</p>
+                                </div>
+                                <div style="background:#F8FAFC;padding:12px;border-radius:10px;">
+                                    <p
+                                        style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">
+                                        Model Version</p>
+                                    <p style="font-size:0.85rem;font-weight:600;color:#334155;margin-top:4px;"
+                                        id="modelVersion">—</p>
+                                </div>
+                                <div style="background:#F8FAFC;padding:12px;border-radius:10px;">
+                                    <p
+                                        style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">
+                                        Processing Time</p>
+                                    <p style="font-size:0.85rem;font-weight:600;color:#334155;margin-top:4px;"
+                                        id="processingTimeResult">—</p>
+                                </div>
+                            </div>
+
+                            <!-- Tumor Region Placeholder -->
+                            <div id="tumorRegionBox" style="display:none;margin-bottom:1.5rem;">
+                                <p style="font-size:0.82rem;font-weight:600;color:#334155;margin-bottom:8px;">
+                                    Highlighted Region</p>
+                                <div
+                                    style="background:#0F172A;border-radius:12px;padding:2rem;text-align:center;position:relative;overflow:hidden;">
+                                    <div
+                                        style="width:200px;height:200px;margin:0 auto;border:2px dashed #EF4444;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;">
+                                        <div
+                                            style="width:60px;height:60px;background:rgba(239,68,68,0.2);border:2px solid #EF4444;border-radius:50%;animation:pulse 2s ease-in-out infinite;">
+                                        </div>
+                                        <div
+                                            style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#EF4444;color:white;font-size:0.7rem;padding:2px 10px;border-radius:4px;font-weight:600;">
+                                            Tumor Detected</div>
+                                    </div>
+                                    <p style="color:#64748B;font-size:0.75rem;margin-top:12px;">AI-highlighted
+                                        suspicious region (placeholder)</p>
+                                </div>
+                            </div>
+
+                            <!-- Recommendation -->
+                            <div
+                                style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1px solid #BFDBFE;border-radius:10px;padding:1rem 1.25rem;">
+                                <p style="font-size:0.78rem;font-weight:600;color:#1D4ED8;margin-bottom:4px;">📋
+                                    Recommendation</p>
+                                <p style="font-size:0.85rem;color:#1E40AF;line-height:1.6;" id="recommendation">—</p>
+                            </div>
+
+                            <!-- Actions -->
+                            <div style="display:flex;gap:12px;margin-top:1.25rem;">
+                                <button class="btn-teal" style="flex:1;justify-content:center;"
+                                    onclick="window.location.href='patients.html'">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                    </svg>
+                                    Save Report
+                                </button>
+                                <button class="btn-outline" onclick="resetAnalysis()">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="23 4 23 10 17 10" />
+                                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                                    </svg>
+                                    New Scan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/mock-api.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/analysis.js"></script>
+</body>
+
+</html>

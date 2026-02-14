@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Info – AI Liver Cancer Detection System</title>
+    <meta name="description" content="System information and model details for the AI liver cancer detection platform.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🏥</text></svg>">
+</head>
+
+<body class="bg-slate-50">
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <div style="padding:1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div
+                    style="width:42px;height:42px;background:linear-gradient(135deg,#2563EB,#0D9488);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 style="color:white;font-size:0.9rem;font-weight:700;">LiverScan AI</h2>
+                    <p style="color:#64748B;font-size:0.72rem;font-weight:500;">Cancer Detection</p>
+                </div>
+            </div>
+        </div>
+        <nav style="padding:1rem 0;">
+            <p
+                style="padding:8px 24px;font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#475569;">
+                Main Menu</p>
+            <a href="dashboard.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg>
+                Dashboard
+            </a>
+            <a href="analysis.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                    <path d="M11 8v6M8 11h6" />
+                </svg>
+                AI Analysis
+            </a>
+            <a href="patients.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                Patient Reports
+            </a>
+            <a href="analytics.html" class="sidebar-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 20V10" />
+                    <path d="M12 20V4" />
+                    <path d="M6 20v-6" />
+                </svg>
+                Analytics
+            </a>
+            <p
+                style="padding:16px 24px 8px;font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#475569;">
+                Settings</p>
+            <a href="system.html" class="sidebar-link active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                System Info
+            </a>
+        </nav>
+        <div
+            style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <div
+                    style="width:36px;height:36px;background:linear-gradient(135deg,#3B82F6,#14B8A6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:white;">
+                    DM</div>
+                <div>
+                    <p style="color:#E2E8F0;font-size:0.82rem;font-weight:600;">Dr. Mehra</p>
+                    <p style="color:#64748B;font-size:0.7rem;">Hepatologist</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div style="display:flex;align-items:center;gap:16px;">
+            <div id="hamburger" class="hamburger" role="button" aria-label="Toggle menu" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+            <h1 style="font-size:1.1rem;font-weight:700;color:#0F172A;">System Information</h1>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px;">
+            <span style="color:#64748B;font-size:0.82rem;" id="dateTime"></span>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <div
+                    style="width:34px;height:34px;background:linear-gradient(135deg,#3B82F6,#14B8A6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:white;">
+                    DM</div>
+                <span style="font-size:0.85rem;font-weight:600;color:#334155;" id="doctorName">Dr. Mehra</span>
+            </div>
+            <a href="#" id="logoutBtn"
+                style="display:flex;align-items:center;gap:6px;color:#EF4444;text-decoration:none;font-size:0.82rem;font-weight:500;padding:6px 14px;border-radius:8px;border:1px solid #FEE2E2;"
+                onmouseover="this.style.background='#FEF2F2'" onmouseout="this.style.background='transparent'">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                Logout
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div style="margin-bottom:2rem;" class="animate-slide-up">
+            <h2 style="font-size:1.6rem;font-weight:800;color:#0F172A;">System Information</h2>
+            <p style="color:#64748B;font-size:0.9rem;margin-top:4px;">AI model details, performance metrics, and system
+                status</p>
+        </div>
+
+        <!-- Model Info -->
+        <div class="stat-card animate-slide-up" style="padding:0;overflow:hidden;margin-bottom:2rem;">
+            <div
+                style="padding:1.25rem 1.5rem;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;gap:10px;">
+                <div
+                    style="width:36px;height:36px;background:linear-gradient(135deg,#2563EB,#0D9488);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 style="font-size:1rem;font-weight:700;color:#0F172A;">AI Model Details</h3>
+                    <p style="font-size:0.78rem;color:#94A3B8;">LiverNet CNN – Production Model</p>
+                </div>
+            </div>
+            <div style="padding:1.5rem;">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div style="background:#F8FAFC;padding:1.25rem;border-radius:12px;border:1px solid #E2E8F0;">
+                        <p
+                            style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">
+                            Model Name</p>
+                        <p style="font-size:1rem;font-weight:700;color:#0F172A;margin-top:6px;">LiverNet CNN</p>
+                    </div>
+                    <div style="background:#F8FAFC;padding:1.25rem;border-radius:12px;border:1px solid #E2E8F0;">
+                        <p
+                            style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">
+                            Architecture</p>
+                        <p style="font-size:1rem;font-weight:700;color:#0F172A;margin-top:6px;">ResNet-50 Backbone</p>
+                    </div>
+                    <div style="background:#F8FAFC;padding:1.25rem;border-radius:12px;border:1px solid #E2E8F0;">
+                        <p
+                            style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">
+                            Framework</p>
+                        <p style="font-size:1rem;font-weight:700;color:#0F172A;margin-top:6px;">TensorFlow 2.15 /
+                            PyTorch 2.1</p>
+                    </div>
+                    <div style="background:#F8FAFC;padding:1.25rem;border-radius:12px;border:1px solid #E2E8F0;">
+                        <p
+                            style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">
+                            Model Version</p>
+                        <p style="font-size:1rem;font-weight:700;color:#0F172A;margin-top:6px;">v3.2.1</p>
+                    </div>
+                    <div style="background:#F8FAFC;padding:1.25rem;border-radius:12px;border:1px solid #E2E8F0;">
+                        <p
+                            style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">
+                            Last Model Update</p>
+                        <p style="font-size:1rem;font-weight:700;color:#0F172A;margin-top:6px;">Feb 1, 2026</p>
+                    </div>
+                    <div style="background:#F8FAFC;padding:1.25rem;border-radius:12px;border:1px solid #E2E8F0;">
+                        <p
+                            style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">
+                            Input Resolution</p>
+                        <p style="font-size:1rem;font-weight:700;color:#0F172A;margin-top:6px;">512 × 512 pixels</p>
+                    </div>
+                    <div
+                        style="background:#F8FAFC;padding:1.25rem;border-radius:12px;border:1px solid #E2E8F0;md:col-span-2 lg:col-span-3">
+                        <p
+                            style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">
+                            Training Data</p>
+                        <p style="font-size:1rem;font-weight:700;color:#0F172A;margin-top:6px;">45,000+ annotated CT/MRI
+                            liver scan images from 12 medical institutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 animate-slide-up-delay-1"
+            style="margin-bottom:2rem;">
+            <div class="info-card">
+                <div
+                    style="width:48px;height:48px;margin:0 auto 12px;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:14px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                </div>
+                <p style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">Accuracy</p>
+                <p style="font-size:1.8rem;font-weight:800;color:#2563EB;margin-top:4px;">96.8%</p>
+            </div>
+            <div class="info-card">
+                <div
+                    style="width:48px;height:48px;margin:0 auto 12px;background:linear-gradient(135deg,#F0FDFA,#CCFBF1);border-radius:14px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <p style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">Sensitivity</p>
+                <p style="font-size:1.8rem;font-weight:800;color:#0D9488;margin-top:4px;">94.5%</p>
+            </div>
+            <div class="info-card">
+                <div
+                    style="width:48px;height:48px;margin:0 auto 12px;background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border-radius:14px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2">
+                        <path d="M18 20V10" />
+                        <path d="M12 20V4" />
+                        <path d="M6 20v-6" />
+                    </svg>
+                </div>
+                <p style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">Specificity</p>
+                <p style="font-size:1.8rem;font-weight:800;color:#D97706;margin-top:4px;">97.6%</p>
+            </div>
+            <div class="info-card">
+                <div
+                    style="width:48px;height:48px;margin:0 auto 12px;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border-radius:14px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="8 12 11 15 16 9" />
+                    </svg>
+                </div>
+                <p style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">F1 Score</p>
+                <p style="font-size:1.8rem;font-weight:800;color:#059669;margin-top:4px;">95.2%</p>
+            </div>
+            <div class="info-card">
+                <div
+                    style="width:48px;height:48px;margin:0 auto 12px;background:linear-gradient(135deg,#FDF2F8,#FCE7F3);border-radius:14px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                </div>
+                <p style="font-size:0.72rem;font-weight:600;color:#94A3B8;text-transform:uppercase;">Avg. Inference</p>
+                <p style="font-size:1.8rem;font-weight:800;color:#DB2777;margin-top:4px;">2.3s</p>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="stat-card animate-slide-up-delay-2" style="padding:0;overflow:hidden;margin-bottom:2rem;">
+            <div style="padding:1.25rem 1.5rem;border-bottom:1px solid #E2E8F0;">
+                <h3 style="font-size:1rem;font-weight:700;color:#0F172A;">System Status</h3>
+            </div>
+            <div style="padding:1.5rem;">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div
+                        style="display:flex;align-items:center;gap:12px;padding:1rem;background:#ECFDF5;border-radius:10px;border:1px solid #D1FAE5;">
+                        <div
+                            style="width:10px;height:10px;background:#10B981;border-radius:50%;box-shadow:0 0 8px rgba(16,185,129,0.5);">
+                        </div>
+                        <div>
+                            <p style="font-size:0.82rem;font-weight:600;color:#065F46;">AI Engine</p>
+                            <p style="font-size:0.75rem;color:#059669;">Operational</p>
+                        </div>
+                    </div>
+                    <div
+                        style="display:flex;align-items:center;gap:12px;padding:1rem;background:#ECFDF5;border-radius:10px;border:1px solid #D1FAE5;">
+                        <div
+                            style="width:10px;height:10px;background:#10B981;border-radius:50%;box-shadow:0 0 8px rgba(16,185,129,0.5);">
+                        </div>
+                        <div>
+                            <p style="font-size:0.82rem;font-weight:600;color:#065F46;">Database</p>
+                            <p style="font-size:0.75rem;color:#059669;">Connected</p>
+                        </div>
+                    </div>
+                    <div
+                        style="display:flex;align-items:center;gap:12px;padding:1rem;background:#ECFDF5;border-radius:10px;border:1px solid #D1FAE5;">
+                        <div
+                            style="width:10px;height:10px;background:#10B981;border-radius:50%;box-shadow:0 0 8px rgba(16,185,129,0.5);">
+                        </div>
+                        <div>
+                            <p style="font-size:0.82rem;font-weight:600;color:#065F46;">Storage</p>
+                            <p style="font-size:0.75rem;color:#059669;">82% Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="animate-slide-up-delay-3">
+            <div
+                style="background:linear-gradient(135deg, #FEF2F2, #FEE2E2);border:2px solid #FECACA;border-radius:16px;padding:2rem;position:relative;overflow:hidden;">
+                <div
+                    style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:rgba(239,68,68,0.05);border-radius:50%;">
+                </div>
+                <div style="display:flex;gap:16px;align-items:flex-start;">
+                    <div
+                        style="width:48px;height:48px;background:white;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(239,68,68,0.15);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size:1.05rem;font-weight:700;color:#991B1B;margin-bottom:8px;">⚕️ Important
+                            Medical Disclaimer</h3>
+                        <p style="font-size:0.9rem;color:#B91C1C;line-height:1.7;">
+                            This AI system is designed to <strong>assist</strong> medical professionals in detecting
+                            potential liver cancer from CT and MRI scans. It does <strong>NOT</strong> replace
+                            professional medical diagnosis. All results must be verified by qualified healthcare
+                            professionals. This tool is intended for <strong>clinical decision support only</strong> and
+                            should not be the sole basis for any medical decision.
+                        </p>
+                        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(185,28,28,0.15);">
+                            <p style="font-size:0.78rem;color:#DC2626;font-weight:500;">
+                                In compliance with medical AI regulations and clinical best practices. For professional
+                                use only.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="margin-top:2rem;text-align:center;padding:1.5rem;color:#94A3B8;font-size:0.78rem;">
+            <p>© 2026 AI Liver Cancer Detection System • LiverNet v3.2.1 • All Rights Reserved</p>
+            <p style="margin-top:4px;">Developed for Clinical Use Under Medical Supervision</p>
+        </div>
+    </main>
+
+    <script src="js/mock-api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
