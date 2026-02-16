@@ -3,24 +3,22 @@
 
 const App = (() => {
     // --- Auth ---
+    // --- Auth ---
     function checkAuth() {
-        const user = sessionStorage.getItem('lcds_user');
-        if (!user && !window.location.pathname.endsWith('index.html') && !window.location.pathname.endsWith('/')) {
-            window.location.href = 'index.html';
+        // Auth.js handles redirects. This function now just returns user info for UI.
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        if (isLoggedIn) {
+            return {
+                name: localStorage.getItem('userName'),
+                email: localStorage.getItem('userEmail'),
+                role: localStorage.getItem('userRole')
+            };
         }
-        return user ? JSON.parse(user) : null;
+        return null;
     }
 
-    function login(name, email) {
-        const user = { name, email, loginTime: new Date().toISOString() };
-        sessionStorage.setItem('lcds_user', JSON.stringify(user));
-        return user;
-    }
+    // login and logout are handled by Auth.js
 
-    function logout() {
-        sessionStorage.removeItem('lcds_user');
-        window.location.href = 'index.html';
-    }
 
     // --- Sidebar ---
     function initSidebar() {
@@ -76,12 +74,7 @@ const App = (() => {
             setInterval(updateTime, 1000);
         }
 
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                logout();
-            });
-        }
+
     }
 
     // --- Counter Animation ---
@@ -114,12 +107,18 @@ const App = (() => {
         initTopNav();
     }
 
-    return { checkAuth, login, logout, init, animateCounter };
+    return { checkAuth, init, animateCounter };
 })();
 
 // Auto-init on DOMContentLoaded for dashboard pages
+// Auto-init on DOMContentLoaded for dashboard pages
 document.addEventListener('DOMContentLoaded', () => {
-    if (!window.location.pathname.endsWith('index.html') && window.location.pathname !== '/') {
+    // Only init App (sidebar/topbar) on protected pages
+    const path = window.location.pathname;
+    const page = path.split('/').pop();
+    const protectedPages = ['dashboard.html', 'patients.html', 'analytics.html', 'system.html', 'analysis.html'];
+
+    if (protectedPages.includes(page)) {
         App.init();
     }
 });
